@@ -1,0 +1,77 @@
+//Table Sender
+
+create table SENDER
+(
+ SenderId int primary key auto_increment,
+ SenderName varchar(255),
+ SenderAddress varchar(255),
+ Sendercity varchar(255)
+)
+
+//insert query
+
+insert into SENDER values ('','Ali','2, ABC Appts','karachi');
+insert into SENDER values ('','Zain','12 newtown','Lahore');
+insert into SENDER values ('','Fatima','25/A , parkstreet','Lahore');
+insert into SENDER values ('','sahiba','Hno 123 ,abc district','karachi');
+
+
+//Table RECIPIENT
+
+create table RECIPIENT
+(
+ RecId int primary key auto_increment,
+ SenderID int,
+ Foreign key (SenderID) reference SENDER(SenderId),
+ RecName varchar(255),
+ RecAddress varchar(255),
+ RecCity varchar(255)
+);
+
+//insert query
+
+insert into RECIPIENT values ('',1,'Saima','Abc ,2 landhi','karachi');
+insert into RECIPIENT values ('',2,'Momina','23 a, abc street','Lahore');
+insert into RECIPIENT values ('',3,'sarim','H.NO 456 xyz street','Multan');
+insert into RECIPIENT values ('',2,'umar','234E DHA','karachi');
+insert into RECIPIENT values ('',4,'usman','25 newtown','Hyderabad');
+
+//logic query
+
+1) SELECT (`SenderName`) FROM `SENDER` WHERE Sendercity = 'Lahore';
+2)SELECT recipient.RecId,sender.SenderName,sender.SenderAddress,recipient.RecName,recipient.RecAddress FROM `sender` INNER JOIN recipient ON sender.SenderId=recipient.SenderID;
+3)SELECT * FROM `recipient` ORDER BY RecName ASC;
+4)SELECT `RecId`,`RecCity` FROM `recipient`;
+
+
+
+//Table categories 
+
+create table categories 
+(
+ categoryId int primary key auto_increment,
+ categoryName varchar(255),
+);
+
+//insert query 
+
+insert into categories values ('','Watches');
+insert into categories values ('','Phones'); 
+
+
+//Table products 
+
+create table products 
+(
+ productId int primary key auto_increment,
+ productName varchar(255),
+ CategoryId int,
+ Foreign key (CategoryId) reference categories(categoryId)
+);
+
+//insert query
+
+insert into products values ('','Men Watches',2);
+
+
+
